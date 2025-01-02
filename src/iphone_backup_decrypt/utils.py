@@ -27,6 +27,7 @@ class RelativePath:
     # Very common external files:
     WHATSAPP_MESSAGES = "ChatStorage.sqlite"
     WHATSAPP_CONTACTS = "ContactsV2.sqlite"
+    WHATSAPP_CALLS = "CallHistory.sqlite"
 
 
 class RelativePathsLike:
