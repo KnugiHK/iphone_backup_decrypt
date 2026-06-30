@@ -246,7 +246,7 @@ class EncryptedBackup:
             print(cur.fetchone()[0])
         """
         # Ensure that we've decrypted the manifest file:
-        self._decrypt_manifest_db_file()
+        self.decrypt_manifest_db_file()
         # Get and yield a cursor:
         temp_cur = self._temp_manifest_db_conn.cursor()
         yield temp_cur
@@ -372,7 +372,7 @@ class EncryptedBackup:
         """
         # Ensure that we've initialised everything:
         if self._temp_manifest_db_conn is None:
-            self._decrypt_manifest_db_file()
+            self.decrypt_manifest_db_file()
         # If the filter function is not provided, default to including everything:
         _include_fn = filter_callback if callable(filter_callback) else (lambda **kwargs: True)
         # Use Manifest.db to find the on-disk filename(s) and file metadata, including the keys, for the file(s).
@@ -434,7 +434,7 @@ class EncryptedBackup:
         :return: The query result.
         """
         if self._temp_manifest_db_conn is None:
-            self._decrypt_manifest_db_file()
+            self.decrypt_manifest_db_file()
         # Use Manifest.db to find the on-disk filename(s) and file metadata, including the keys, for the file(s).
         # The metadata is contained in the 'file' column, as a binary PList file; the filename in 'relativePath':
         self._temp_manifest_db_conn.row_factory = sqlite3.Row
